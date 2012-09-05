@@ -3,6 +3,7 @@ module ActionDispatch
   class ShowExceptions
     private
       def render_exception_with_template(env, exception)
+        return if RailsExceptionHandler.configuration.show_exceptions
         if(RailsExceptionHandler.configuration.environments.include?(Rails.env.to_sym))
           RailsExceptionHandler::Handler.new(env, exception).handle_exception
         else

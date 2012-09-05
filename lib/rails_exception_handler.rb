@@ -8,6 +8,7 @@ class RailsExceptionHandler
     @app.call(env)
   rescue Exception => e
     Handler.new(env, e).handle_exception
+    raise e if RailsExceptionHandler.configuration.show_exceptions
   end
 
   def self.configuration
@@ -21,7 +22,7 @@ class RailsExceptionHandler
     Rails.configuration.middleware.use(RailsExceptionHandler)
 
     Rails.configuration.action_dispatch.show_exceptions = true
-    Rails.configuration.consider_all_requests_local = false
+    Rails.configuration.consider_all_requests_local = @configuration.show_exceptions || false
     require File.expand_path(File.dirname(__FILE__)) + '/patch/show_exceptions.rb'
     configuration.run_callback
   end

@@ -21,7 +21,7 @@ class RailsExceptionHandler::Handler
   def handle_exception
     @parsed_error = RailsExceptionHandler::Parser.new(@env, @request, @exception, @controller)
     store_error unless(@parsed_error.ignore?)
-    return response
+    return response unless RailsExceptionHandler.configuration.show_exceptions
   end
   
   private

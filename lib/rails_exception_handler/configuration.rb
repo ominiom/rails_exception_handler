@@ -1,5 +1,5 @@
 class RailsExceptionHandler::Configuration
-  attr_accessor :storage_strategies, :environments, :filters, :responses, :response_mapping, :fallback_layout, :store_user_info, :env_info_block, :global_info_block, :exception_info_block, :request_info_block
+  attr_accessor :storage_strategies, :environments, :filters, :responses, :response_mapping, :fallback_layout, :store_user_info, :env_info_block, :global_info_block, :exception_info_block, :request_info_block, :show_exceptions
 
   def initialize
     @environments = [:production]
